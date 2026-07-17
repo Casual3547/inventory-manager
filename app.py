@@ -10,9 +10,7 @@ import os
 
 app = Flask(__name__)
 
-
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///inventory.db"
-
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///inventory.db")
 db.init_app(app)
 app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
 
