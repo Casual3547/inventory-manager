@@ -110,7 +110,7 @@ def edit(edit_id):
 @login_required
 def search():
     name = request.args.get('product_name')
-    product = db.session.execute(db.select(Product).where(Product.name.contains(name))).scalars().all()
+    product = db.session.execute(db.select(Product).where((Product.name.icontains(name))& (Product.user_id == current_user.id))).scalars().all()
     return render_template('home.html',products=product)
 
 
